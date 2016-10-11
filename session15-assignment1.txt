@@ -1,0 +1,92 @@
+//TextFile
+
+CREATE TABLE IF NOT EXISTS olympic (athelete STRING,
+age INT,
+country STRING,
+year STRING,
+closing_date STRING,
+sport STRING,
+gold INT,
+silver INT,
+bronze INT,
+total INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t' 
+STORED AS TEXTFILE;
+
+DESCRIBE olympic;
+
+LOAD DATA LOCAL INPATH '/home/acadgild/development/hive/datasets/olympix_data.csv' INTO TABLE olympic;
+
+SELECT * FROM olympic;
+
+//SequenceFile
+
+CREATE TABLE IF NOT EXISTS olympic_sequencefile(athelete STRING,
+age INT,
+country STRING,
+year STRING,
+closing_date STRING,
+sport STRING,
+gold INT,
+silver INT,
+bronze INT,
+total INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t' 
+STORED AS SEQUENCEFILE;
+
+DESCRIBE olympic_sequencefile;
+
+INSERT OVERWRITE TABLE olympic_sequencefile
+SELECT * FROM olympic;
+
+SELECT * FROM olympic_sequencefile;
+
+//RCFile
+
+CREATE TABLE IF NOT EXISTS olympic_rcfile(athelete STRING,
+age INT,
+country STRING,
+year STRING,
+closing_date STRING,
+sport STRING,
+gold INT,
+silver INT,
+bronze INT,
+total INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t' 
+STORED AS RCFILE;
+
+DESCRIBE olympic_rcfile;
+
+INSERT OVERWRITE TABLE olympic_rcfile
+SELECT * FROM olympic;
+
+SELECT * FROM olympic_rcfile;
+
+//ORCFile
+
+CREATE TABLE IF NOT EXISTS olympic_orcfile(athelete STRING,
+age INT,
+country STRING,
+year STRING,
+closing_date STRING,
+sport STRING,
+gold INT,
+silver INT,
+bronze INT,
+total INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t' 
+STORED AS ORCFILE;
+
+DESCRIBE olympic_orcfile;
+
+INSERT OVERWRITE TABLE olympic_orcfile
+SELECT * FROM olympic;
+
+SELECT * FROM olympic_orcfile;
+
+
